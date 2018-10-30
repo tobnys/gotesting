@@ -1,15 +1,22 @@
 package main
 
-import "fmt"
-
-type types struct {
-	myInt    int
-	myString string
-}
+import (
+	"fmt"
+	"net"
+)
 
 func main() {
-	fmt.Println(types{1, "asd"})
-
-	test := types{1123, "adsasd"}
-	fmt.Println(test.myString)
+	srv, err := net.Listen("tcp", ":8080")
+	if err != nil {
+		fmt.Println(err)
+	}
+	for {
+		conn, err := srv.Accept()
+		if err != nil {
+			fmt.Println(err)
+		} else {
+			fmt.Println(conn.LocalAddr())
+			fmt.Println(conn.Close())
+		}
+	}
 }
