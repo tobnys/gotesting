@@ -4,14 +4,22 @@ import "fmt"
 
 // Test constants
 const (
-	TEST  = 123
-	TEST2 = 1234
+	FibLength = 10
 )
 
 func main() {
-	fmt.Println(TEST)
+	runFibo(FibLength)
 }
 
-func testFunc(a, b int) int {
-	return a + b
+func runFibo(l int) {
+	num1 := 0
+	num2 := 1
+	numSum := num1 + num2
+	fmt.Println(numSum)
+	for i := 0; i < l; i++ {
+		numSum = num1 + num2
+		num1 = num2
+		num2 = numSum
+		fmt.Println(numSum)
+	}
 }
